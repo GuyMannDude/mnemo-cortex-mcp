@@ -1,0 +1,16 @@
+{
+  "name": "mnemo-cortex-mcp",
+  "version": "2.0.0",
+  "description": "MCP server bridge for Mnemo Cortex — gives Claude Desktop persistent semantic memory",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["mcp", "claude", "memory", "semantic", "mnemo"],
+  "author": "Project Sparks / Guy Hutchins",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0"
+  }
+}
