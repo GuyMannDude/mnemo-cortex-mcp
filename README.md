@@ -1,13 +1,15 @@
 # mnemo-cortex-mcp
 
-> **This repo has been merged into [mnemo-cortex](https://github.com/GuyMannDude/mnemo-cortex).** Install mnemo-cortex instead.
+> **Claude Desktop integration temporarily pulled (v2.3.0, April 7 2026).**
 
-The MCP bridge now lives at `mnemo-cortex/integrations/claude-desktop/`. One repo, one install.
+Anthropic's Claude Desktop (v2.1.87+) moved session storage from disk JSONL to internal IndexedDB. The automatic session watcher that captured conversations into Mnemo broke silently. Rather than ship a known-broken integration, we pulled it until a reliable capture path exists.
 
-## Migration
+**Claude Code and OpenClaw integrations are unaffected.** See [mnemo-cortex](https://github.com/GuyMannDude/mnemo-cortex).
 
-1. Clone [mnemo-cortex](https://github.com/GuyMannDude/mnemo-cortex)
-2. `cd integrations/claude-desktop && npm install`
-3. Update your MCP config path to point at `mnemo-cortex/integrations/claude-desktop/server.js`
+## Status
+
+- The MCP server tools (recall, search, save, brain files) worked correctly
+- The session watcher (auto-capture) is what broke
+- Tracking the fix in the main repo
 
 This repo is archived and will not receive updates.
