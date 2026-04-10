@@ -1,6 +1,6 @@
 {
   "name": "mnemo-cortex-mcp",
-  "version": "2.0.0",
+  "version": "2.3.0",
   "description": "MCP server bridge for Mnemo Cortex — gives Claude Desktop persistent semantic memory",
   "main": "server.js",
   "type": "module",
