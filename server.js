@@ -341,6 +341,26 @@ server.tool(
         parts.push("# MNEMO ERROR\nCould not reach Mnemo Cortex: " + e.message);
       }
 
+      // 3b. Pull latest dream brief (cross-agent overnight synthesis)
+      try {
+        const dreamDir = "/home/guy/.agentb/dreams";
+        const dreamFiles = (await readdir(dreamDir))
+          .filter((f) => f.endsWith(".md"))
+          .sort()
+          .reverse();
+        if (dreamFiles.length > 0) {
+          const latestDream = join(dreamDir, dreamFiles[0]);
+          const { statSync } = await import("node:fs");
+          const dreamAge = (Date.now() - statSync(latestDream).mtimeMs) / 3600000;
+          if (dreamAge < 48) {
+            const dreamContent = await readFile(latestDream, "utf-8");
+            parts.push("# DREAM BRIEF (cross-agent overnight synthesis, " + Math.round(dreamAge) + "h ago)\n\n" + dreamContent);
+          }
+        }
+      } catch (_) {
+        // non-fatal — dreams are supplementary
+      }
+
       // 4. Log session start to Mnemo
       try {
         await mnemoPost("/writeback", {
