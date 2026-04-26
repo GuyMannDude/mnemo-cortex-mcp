@@ -92,7 +92,7 @@ async function flushBuffer() {
     .filter((e) => TOOL_CAPTURE[e.tool] === "full")
     .map((e) => e.summary.slice(0, 100));
 
-  const sid = sessionId || `opie-auto-${Date.now()}`;
+  const sid = sessionId || `${AGENT_ID}-auto-${Date.now()}`;
 
   try {
     await mnemoPost("/writeback", {
@@ -258,7 +258,7 @@ server.tool(
       const sid =
         session_id ||
         sessionId ||
-        `opie-${new Date().toISOString().slice(0, 19).replace(/[T:]/g, "-")}`;
+        `${AGENT_ID}-${new Date().toISOString().slice(0, 19).replace(/[T:]/g, "-")}`;
       const data = await mnemoPost("/writeback", {
         session_id: sid,
         summary,
@@ -292,7 +292,7 @@ server.tool(
   async () => {
     // Initialize session tracking
     sessionStartTime = new Date().toISOString();
-    sessionId = `opie-${sessionStartTime.slice(0, 19).replace(/[T:]/g, "-")}`;
+    sessionId = `${AGENT_ID}-${sessionStartTime.slice(0, 19).replace(/[T:]/g, "-")}`;
     toolCallCount = 0;
     lastSaveTime = null;
     captureBuffer.length = 0;
@@ -510,7 +510,7 @@ server.tool(
 
     // 1. Save to Mnemo
     try {
-      const sid = sessionId || `opie-${new Date().toISOString().slice(0, 19).replace(/[T:]/g, "-")}`;
+      const sid = sessionId || `${AGENT_ID}-${new Date().toISOString().slice(0, 19).replace(/[T:]/g, "-")}`;
       const data = await mnemoPost("/writeback", {
         session_id: sid,
         summary: `[SESSION END] ${summary}`,
